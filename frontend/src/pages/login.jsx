@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
+const API = import.meta.env.VITE_API_URL;
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +21,7 @@ const Login = () => {
     setSuccess("");
 
     try {
-      const { data } = await axios.post("https://assignment-tracker-1-enhx.onrender.com//user/login", {
+      const { data } = await axios.post(`${API}/user/login`, {
         email,
         password,
       });

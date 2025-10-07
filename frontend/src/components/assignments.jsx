@@ -4,6 +4,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 
+const API = import.meta.env.VITE_API_URL;
+
+
 const Assignments = () => {
   const [add, setAdd] = useState(false);
   const [title, setTitle] = useState("");
@@ -19,7 +22,7 @@ const Assignments = () => {
   useEffect(() => {
     const fetchAssignments = async () => {
       try {
-        const res = await axios.get("https://assignment-tracker-1-enhx.onrender.com//assignments", {
+        const res = await axios.get(`${API}/assignments`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setData(res.data);
@@ -37,7 +40,7 @@ const Assignments = () => {
 
     try {
       await axios.post(
-        "https://assignment-tracker-1-enhx.onrender.com/assignments",
+        `${API}/assignments`,
         { title, description, subject, dueDate, status },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -45,7 +48,7 @@ const Assignments = () => {
       );
 
       // Refetch assignments
-      const res = await axios.get("https://assignment-tracker-1-enhx.onrender.com", {
+      const res = await axios.get(`${API}/assignments`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setData(res.data);
