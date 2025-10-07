@@ -19,7 +19,7 @@ const Assignments = () => {
   useEffect(() => {
     const fetchAssignments = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/assignments", {
+        const res = await axios.get("https://assignment-tracker-1-enhx.onrender.com//assignments", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setData(res.data);
@@ -37,7 +37,7 @@ const Assignments = () => {
 
     try {
       await axios.post(
-        "http://localhost:3000/assignments",
+        "https://assignment-tracker-1-enhx.onrender.com/assignments",
         { title, description, subject, dueDate, status },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -45,7 +45,7 @@ const Assignments = () => {
       );
 
       // Refetch assignments
-      const res = await axios.get("http://localhost:3000/assignments", {
+      const res = await axios.get("https://assignment-tracker-1-enhx.onrender.com", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setData(res.data);
